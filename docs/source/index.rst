@@ -53,6 +53,7 @@ Contents:
 
    /general/setup
    /general/basics
+   /general/backend-for-dummies
    /backends/openwrt
    /backends/openwisp
    /backends/openvpn
