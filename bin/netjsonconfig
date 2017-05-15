@@ -50,10 +50,10 @@ output = parser.add_argument_group('output')
 
 output.add_argument('--backend', '-b',
                     required=True,
-                    choices=['openwrt', 'openwisp'],
+                    choices=['openwrt', 'openwisp', 'airos'],
                     action='store',
                     type=str,
-                    help='Configuration backend: openwrt or openwisp')
+                    help='Configuration backend: openwrt, openwisp or airos')
 
 output.add_argument('--method', '-m',
                     required=True,
@@ -154,7 +154,8 @@ method_arguments = parse_method_arguments(args.args)
 
 backends = {
     'openwrt': netjsonconfig.OpenWrt,
-    'openwisp': netjsonconfig.OpenWisp
+    'openwisp': netjsonconfig.OpenWisp,
+    'airos': netjsonconfig.AirOS
 }
 
 backend_class = backends[args.backend]
