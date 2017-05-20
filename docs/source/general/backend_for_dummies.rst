@@ -166,3 +166,44 @@ If we run the previous example we get a different result
    The value of foo is: bar
    >>>
 
+
+Use the new backend in netjsonconfig
+------------------------------------
+
+Now that we have a new backend we can add it to the available backends and to the command line tool
+
+Add it to the available backends
+
+.. code:: python
+
+   # netjsonconfig/__init__.py
+
+   from .version import VERSION, __version__, get_version
+
+   ...
+   from .backends.foo.foo import FooBackend as Foo
+
+Add it to the arguments accepted by the command line tool
+
+.. code:: python
+
+   # bin/netjsonconfig
+
+   # add 'foo' to the choices array
+   output.agg_argument('--backend', '-b',
+        required=True,
+        choices=['openwrt', 'openwisp', 'foo'],
+        action='store',
+        type=str,
+        help='Configuration backend: openwrt, openwisp of foo'
+        )
+
+   ...
+
+   # add the 'foo' key to the backend dictionary
+   # with the value netjsonconfig.Foo
+   backends = {
+        'openwrt': nejsonconfig.OpeWrt,
+        'openwisp': netjsonconfig.OpenWisp,
+        'foo': netjsonconfig.Foo,
+   }
