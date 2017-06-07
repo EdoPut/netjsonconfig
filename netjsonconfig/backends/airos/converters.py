@@ -36,7 +36,7 @@ class Bridge(BaseConverter):
         result = []
 
         original = [
-                i for i in get_copy(self.netjson, self.netjson_key) if i['type'] == 'bridge'
+                i for i in self.value if i['type'] == 'bridge'
                 ]
 
         bridges = []
