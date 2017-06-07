@@ -1,3 +1,5 @@
+from ...utils import get_copy
+
 class BaseConverter(object):
     """
     Base Converter class
@@ -7,6 +9,13 @@ class BaseConverter(object):
     and vice versa.
     """
     netjson_key = None
+
+    @property
+    def value(self):
+        if self.netjson_key:
+            return get_copy(self.netjson, self.netjson_key)
+        else:
+            raise ValueError('netjson_key not set on %s', (self.__class__.__name__,))
 
     def __init__(self, backend):
         self.backend = backend
