@@ -6,6 +6,35 @@ from ...schema import DEFAULT_FILE_MODE  # noqa - backward compatibility
 from ...utils import merge_config
 
 """
+This schema defines a new property ``gui`` in netjson
+to configure the web interface for airos
+"""
+gui_schema = {
+        "properties": {
+            "gui": {
+                "additionalProperties": True,
+                "propertyOrder": 1,
+                "properties": {
+                    "advanced": {
+                        "type": "boolean",
+                        "propertyOrder": 1,
+                    },
+                    "language": {
+                        "type": "string",
+                        "propertyOrder": 2,
+                    },
+                },
+                "required": [
+                    "advanced",
+                    "language"
+                ],
+                "title": "Gui",
+                "type": "object",
+            },
+        }
+}
+
+"""
 This defines a new property in the ``Interface``.
 
 The management interface is the one that exposes the
@@ -29,6 +58,7 @@ netconf_schema = {
             }
         }
     }
+
 
 """
 This schema override the possible encryption for AirOS from the default schema
@@ -67,4 +97,4 @@ wpasupplicant_schema = {
 }
 
 
-schema = merge_config(default_schema, netconf_schema, wpasupplicant_schema)
+schema = merge_config(default_schema, gui_schema, netconf_schema, wpasupplicant_schema)

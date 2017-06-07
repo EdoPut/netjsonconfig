@@ -52,8 +52,8 @@ class Aaa(BaseConverter):
                         {
                             'port': 1813,
                             'status': 'disabled',
-                        },
-                    ],
+                            },
+                        ],
                     'auth': [
                         {
                             'port': 1812,
@@ -99,10 +99,10 @@ class Bridge(BaseConverter):
                 }
             })
 
-        result.append(bridges)
+                result.append(bridges)
         result.append({
             'status':  'enabled',
-        })
+            })
 
         return (('bridge', result),)
 
@@ -112,13 +112,13 @@ class Discovery(BaseConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                   'cdp': {
-                       'status': 'enabled',
+                {
+                    'cdp': {
+                        'status': 'enabled',
+                        },
+                    'status': 'enabled',
                     },
-                   'status': 'enabled',
-                },
-        ]
+                ]
         return (('discovery', result),)
 
 
@@ -162,6 +162,9 @@ class Gui(BaseConverter):
     netjson_key = 'gui'
 
     def to_intermediate(self):
+        language = self.netjson[self.netjson_key].get('language', 'en_US')
+        status = 'enabled' if self.netjson[self.netjson_key].get('advanced') else 'disabled'
+
         result = [
                {
                     'language':  'en_US',
@@ -169,7 +172,7 @@ class Gui(BaseConverter):
                {
                     'network': {
                         'advanced': {
-                            'status':  'enabled',
+                            'status':  status,
                         }
                     }
                 }
