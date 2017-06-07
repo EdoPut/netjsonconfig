@@ -15,18 +15,19 @@ class Aaa(BaseConverter):
                         {
                             'port': 1813,
                             'status': 'disabled',
-                        },
-                    ],
+                            },
+                        ],
                     'auth': [
                         {
                             'port': 1812,
-                        },
-                    ],
-                },
+                            },
+                        ],
+                    },
                 'status': 'disabled',
-            }
-        ])
+                }
+            ])
         return (('aaa', result),)
+
 
 class Bridge(BaseConverter):
     netjson_key = 'interfaces'
@@ -45,22 +46,22 @@ class Bridge(BaseConverter):
                 bridge_ports.append({
                     'devname':  port,
                     'status':  'enabled',
-                })
+                    })
 
-            bridges.append({
-                'comment':  interface.get('comment', ''),
-                'devname':  interface['name'],
-                'port':  bridge_ports,
-                'status':  'disabled' if interface['disabled'] else 'enabled',
-                'stp': {
-                    'status':  'enabled',
-                }
-            })
+                bridges.append({
+                    'comment':  interface.get('comment', ''),
+                    'devname':  interface['name'],
+                    'port':  bridge_ports,
+                    'status':  'disabled' if interface.get('disabled') else 'enabled',
+                    'stp': {
+                        'status':  'enabled',
+                        }
+                    })
 
-        result.append(bridges)
+                result.append(bridges)
         result.append({
             'status':  'enabled',
-        })
+            })
 
         return (('bridge', result),)
 
@@ -70,13 +71,13 @@ class Discovery(BaseConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                   'cdp': {
-                       'status': 'enabled',
+                {
+                    'cdp': {
+                        'status': 'enabled',
+                        },
+                    'status': 'enabled',
                     },
-                   'status': 'enabled',
-                },
-        ]
+                ]
         return (('discovery', result),)
 
 
@@ -88,12 +89,12 @@ class Dyndns(BaseConverter):
                 [
                     {
                         'servicename': 'dyndns.org',
-                    },
-                ],
+                        },
+                    ],
                 {
                     'status': 'enabled',
-                },
-        ]
+                    },
+                ]
         return (('dyndns', result),)
 
 
@@ -101,14 +102,17 @@ class Gui(BaseConverter):
     netjson_key = 'gui'
 
     def to_intermediate(self):
+        language = self.netjson[self.netjson_key].get('language', 'en_US')
+        status = 'enabled' if self.netjson[self.netjson_key].get('advanced') else 'disabled'
+
         result = [
                {
-                    'language':  'it_IT',
-                },
+                    'language':  language,
+               },
                {
                     'network': {
                         'advanced': {
-                            'status':  'enabled',
+                            'status':  status,
                         }
                     }
                 }
@@ -209,7 +213,7 @@ class Radio(BaseConverter):
     def to_intermediate(self):
         result = []
 
-        original = get_copyt(self.netjson, self.netjson_key)
+        original = get_copy(self.netjson, self.netjson_key)
 
         radios = []
 
