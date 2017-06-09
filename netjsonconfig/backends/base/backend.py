@@ -6,12 +6,13 @@ from copy import deepcopy
 from io import BytesIO
 
 import six
-from jsonschema import FormatChecker, validate
+from jsonschema import FormatChecker
 from jsonschema.exceptions import ValidationError as JsonSchemaError
 
 from ...exceptions import ValidationError
 from ...schema import DEFAULT_FILE_MODE
 from ...utils import evaluate_vars, merge_config
+from ...validator import ValidatorWithDefaults
 
 
 class BaseBackend(object):
@@ -98,7 +99,7 @@ class BaseBackend(object):
 
     def validate(self):
         try:
-            validate(self.config, self.schema, format_checker=FormatChecker())
+            ValidatorWithDefaults(self.schema, format_checker=FormatChecker()).validate(self.config)
         except JsonSchemaError as e:
             raise ValidationError(e)
 
