@@ -190,3 +190,12 @@ class TestWpasupplicantStation(ConverterTest):
                 ]
 
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)
+
+
+class TestWpasupplicantAccess(ConverterTest):
+    """
+    Test the wpasupplicant converter for a
+    device in ``access_point`` mode
+    """
+
+    backend = WpasupplicantAirOS
