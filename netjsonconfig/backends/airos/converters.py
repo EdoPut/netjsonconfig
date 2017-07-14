@@ -390,10 +390,17 @@ class Radio(BaseConverter):
 
         for r in original:
             radios.append({
+                'ack': {
+                    'auto': 'enabled',
+                },
+                'cable': {
+                    'loss': 0,
+                },
+                'chanbw': r.get('channel_width', ''),
                 'devname': r['name'],
+                'reg_obey': 'enabled',
                 'status': status(r),
                 'txpower': r.get('tx_power', ''),
-                'chanbw': r.get('channel_width', ''),
             })
 
         result.append(radios)
