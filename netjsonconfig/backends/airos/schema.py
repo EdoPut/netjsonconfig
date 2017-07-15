@@ -30,6 +30,8 @@ netconf_schema = {
         }
     }
 
+schema = merge_config(default_schema, netconf_schema)
+
 """
 This schema defines a new property for netjson
 
@@ -50,6 +52,8 @@ netmode_schema = {
             },
         },
     }
+
+schema = merge_config(schema, netmode_schema)
 
 """
 This schema override the possible encryption for AirOS from the default schema
@@ -87,10 +91,4 @@ wpasupplicant_schema = {
     },
 }
 
-
-schema = merge_config(
-        default_schema,
-        netconf_schema,
-        netmode_schema,
-        wpasupplicant_schema,
-    )
+schema = merge_config(schema, wpasupplicant_schema)
