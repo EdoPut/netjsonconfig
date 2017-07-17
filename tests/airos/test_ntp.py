@@ -1,4 +1,4 @@
-from .dummy import NtpclientAirOs, ConverterTest
+from .mock import NtpclientAirOs, ConverterTest
 
 
 class TestResolvConverter(ConverterTest):

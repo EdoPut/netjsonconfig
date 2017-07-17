@@ -186,7 +186,6 @@ class SnmpAirOs(AirOs):
     ]
 
 
-
 class SshdAirOs(AirOs):
     """
     Mock backend with converter for ssh daemon settings

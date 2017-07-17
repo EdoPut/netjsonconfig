@@ -1,4 +1,4 @@
-from .dummy import PwdogAirOs, ConverterTest
+from .mock import PwdogAirOs, ConverterTest
 
 
 class TestPwdogConverter(ConverterTest):

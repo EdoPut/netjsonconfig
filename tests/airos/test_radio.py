@@ -1,4 +1,4 @@
-from .dummy import RadioAirOs, ConverterTest
+from .mock import RadioAirOs, ConverterTest
 
 
 class TestRadioConverter(ConverterTest):

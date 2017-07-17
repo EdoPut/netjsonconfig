@@ -1,4 +1,4 @@
-from .dummy import GuiAirOs, ConverterTest
+from .mock import GuiAirOs, ConverterTest
 
 
 class TestGuiConverter(ConverterTest):

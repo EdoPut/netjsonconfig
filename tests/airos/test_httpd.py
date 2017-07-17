@@ -1,4 +1,4 @@
-from .dummy import HttpdAirOs, ConverterTest
+from .mock import HttpdAirOs, ConverterTest
 
 
 class TestHttpdConverter(ConverterTest):

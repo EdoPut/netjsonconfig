@@ -1,4 +1,4 @@
-from .dummy import BridgeAirOs, ConverterTest
+from .mock import BridgeAirOs, ConverterTest
 
 
 class TestBridgeConverter(ConverterTest):

@@ -1,4 +1,4 @@
-from .dummy import VlanAirOs, ConverterTest
+from .mock import VlanAirOs, ConverterTest
 
 
 class TestVlanConverter(ConverterTest):

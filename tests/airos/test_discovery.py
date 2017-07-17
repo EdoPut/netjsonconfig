@@ -1,4 +1,4 @@
-from .dummy import DiscoveryAirOs, ConverterTest
+from .mock import DiscoveryAirOs, ConverterTest
 
 
 class TestDiscoveryConverter(ConverterTest):

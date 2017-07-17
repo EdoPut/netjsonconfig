@@ -2,7 +2,7 @@ from unittest import skip
 
 from netjsonconfig.exceptions import ValidationError
 
-from .dummy import WpasupplicantAirOs, ConverterTest
+from .mock import WpasupplicantAirOs, ConverterTest
 
 
 class TestWpasupplicantStation(ConverterTest):

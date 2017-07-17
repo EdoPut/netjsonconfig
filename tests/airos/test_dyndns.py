@@ -1,4 +1,4 @@
-from .dummy import DyndnsAirOs, ConverterTest
+from .mock import DyndnsAirOs, ConverterTest
 
 
 class TestDyndnsConverter(ConverterTest):

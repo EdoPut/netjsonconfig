@@ -1,4 +1,4 @@
-from .dummy import AaaAirOs, ConverterTest
+from .mock import AaaAirOs, ConverterTest
 
 
 class TestResolvConverter(ConverterTest):
