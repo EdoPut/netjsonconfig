@@ -131,10 +131,9 @@ def intermediate_to_list(configuration):
             (index, config) = element
             # update the keys to prefix the index
             temp = {}
-            for k, v in config.items():
+            for key, value in config.items():
                 # write the new key
-                temp['{i}.{key}'.format(i=index + 1, key=k)] = v
-
+                temp['{i}.{key}'.format(i=index + 1, key=key)] = value
             config = temp
             # now the keys are updated with the index
             # reduce to atoms the new config
@@ -144,18 +143,17 @@ def intermediate_to_list(configuration):
 
         elif isinstance(element, dict):
             temp = {}
-            for k, v in element.items():
-                if isinstance(v, string_types) or isinstance(v, int):
+            for key, value in element.items():
+                if isinstance(value, string_types) or isinstance(value, int):
                     pass
                 else:
                     # reduce to atom list
-                    # as v could be dict or list
+                    # as value could be dict or list
                     # enclose it in a flattened list
-                    for son in intermediate_to_list(flatten([v])):
-
-                        for sk, sv in son.items():
-                            nested_key = '{key}.{subkey}'.format(key=k, subkey=sk)
-                            temp[nested_key] = sv
+                    for child in intermediate_to_list(flatten([value])):
+                        for child_key, child_value in child.items():
+                            nested_key = '{key}.{subkey}'.format(key=child_key, subkey=child_value)
+                            temp[nested_key] = child_value
 
             # now it is atomic, append it to
             result.append(temp)
