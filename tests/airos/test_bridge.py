@@ -1,11 +1,11 @@
-from .dummy import BridgeAirOS, ConverterTest
+from .dummy import BridgeAirOs, ConverterTest
 
 
 class TestBridgeConverter(ConverterTest):
     """
     tests for backends.airos.renderers.SystemRenderer
     """
-    backend = BridgeAirOS
+    backend = BridgeAirOs
 
     def test_active_bridge(self):
 

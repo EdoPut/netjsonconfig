@@ -1,10 +1,10 @@
 from unittest import skip
-from .dummy import NetconfAirOS, ConverterTest
+from .dummy import NetconfAirOs, ConverterTest
 
 
 class TestNetconfConverter(ConverterTest):
 
-    backend = NetconfAirOS
+    backend = NetconfAirOs
 
     def test_netconf_key(self):
         o = self.backend({

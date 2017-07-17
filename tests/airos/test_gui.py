@@ -1,9 +1,9 @@
-from .dummy import GuiAirOS, ConverterTest
+from .dummy import GuiAirOs, ConverterTest
 
 
 class TestGuiConverter(ConverterTest):
 
-    backend = GuiAirOS
+    backend = GuiAirOs
 
     def test_gui_key(self):
         o = self.backend({

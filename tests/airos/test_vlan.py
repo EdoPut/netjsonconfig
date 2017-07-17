@@ -1,11 +1,11 @@
-from .dummy import VlanAirOS, ConverterTest
+from .dummy import VlanAirOs, ConverterTest
 
 
 class TestVlanConverter(ConverterTest):
     """
     tests for backends.airos.renderers.SystemRenderer
     """
-    backend = VlanAirOS
+    backend = VlanAirOs
 
     def test_active_vlan(self):
 

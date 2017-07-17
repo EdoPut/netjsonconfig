@@ -1,9 +1,9 @@
-from .dummy import NetmodeAirOS, ConverterTest
+from .dummy import NetmodeAirOs, ConverterTest
 
 
 class TestNetmodeConverter(ConverterTest):
 
-    backend = NetmodeAirOS
+    backend = NetmodeAirOs
 
     def test_netconf_key(self):
         o = self.backend({

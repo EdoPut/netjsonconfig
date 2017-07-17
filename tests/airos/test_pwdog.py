@@ -1,9 +1,9 @@
-from .dummy import PwdogAirOS, ConverterTest
+from .dummy import PwdogAirOs, ConverterTest
 
 
 class TestPwdogConverter(ConverterTest):
 
-    backend = PwdogAirOS
+    backend = PwdogAirOs
 
     def test_ntp_key(self):
         o = self.backend({

@@ -1,9 +1,9 @@
-from .dummy import HttpdAirOS, ConverterTest
+from .dummy import HttpdAirOs, ConverterTest
 
 
 class TestHttpdConverter(ConverterTest):
 
-    backend = HttpdAirOS
+    backend = HttpdAirOs
 
     def test_httpd_key(self):
         o = self.backend({

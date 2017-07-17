@@ -1,9 +1,9 @@
-from .dummy import DyndnsAirOS, ConverterTest
+from .dummy import DyndnsAirOs, ConverterTest
 
 
 class TestDyndnsConverter(ConverterTest):
 
-    backend = DyndnsAirOS
+    backend = DyndnsAirOs
 
     def test_Dyndns_key(self):
         o = self.backend({

@@ -1,9 +1,9 @@
-from .dummy import AaaAirOS, ConverterTest
+from .dummy import AaaAirOs, ConverterTest
 
 
 class TestResolvConverter(ConverterTest):
 
-    backend = AaaAirOS
+    backend = AaaAirOs
 
     def test_aaa_key(self):
         o = self.backend({

@@ -1,9 +1,9 @@
-from .dummy import NtpclientAirOS, ConverterTest
+from .dummy import NtpclientAirOs, ConverterTest
 
 
 class TestResolvConverter(ConverterTest):
 
-    backend = NtpclientAirOS
+    backend = NtpclientAirOs
 
     def test_ntp_key(self):
         o = self.backend({

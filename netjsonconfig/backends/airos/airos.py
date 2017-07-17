@@ -4,12 +4,12 @@ from .converters import Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, \
         Httpd, Igmpproxy, Iptables, Netconf, Netmode, Ntpclient, \
         Pwdog, Radio, Resolv, Route, Snmp, Sshd, Syslog, System, \
         Telnetd, Update, Users, Vlan, Wireless, Wpasupplicant
-from .renderers import AirOS
+from .renderers import AirOS as AirOsRenderer
 from ..base.backend import BaseBackend
 from .schema import schema
 
 
-class AirOS(BaseBackend):
+class AirOs(BaseBackend):
     """
     AirOS backend
     """
@@ -52,10 +52,10 @@ class AirOS(BaseBackend):
     # templates lives
     env_path = 'netjsonconfig.backends.airos'
 
-    renderer = AirOS
+    renderer = AirOsRenderer
 
     def to_intermediate(self):
-        super(AirOS, self).to_intermediate()
+        super(AirOs, self).to_intermediate()
         for k, v in self.intermediate_data.items():
             self.intermediate_data[k] = [x for x in flatten(intermediate_to_list(v)) if x != {}]
 

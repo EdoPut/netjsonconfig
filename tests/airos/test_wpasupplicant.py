@@ -2,7 +2,7 @@ from unittest import skip
 
 from netjsonconfig.exceptions import ValidationError
 
-from .dummy import WpasupplicantAirOS, ConverterTest
+from .dummy import WpasupplicantAirOs, ConverterTest
 
 
 class TestWpasupplicantStation(ConverterTest):
@@ -10,7 +10,7 @@ class TestWpasupplicantStation(ConverterTest):
     Test the wpasupplicant converter for a
     device in ``station`` mode
     """
-    backend = WpasupplicantAirOS
+    backend = WpasupplicantAirOs
 
     def test_invalid_encryption(self):
 
@@ -199,7 +199,7 @@ class TestWpasupplicantAccess(ConverterTest):
     device in ``access_point`` mode
     """
 
-    backend = WpasupplicantAirOS
+    backend = WpasupplicantAirOs
 
     def test_no_encryption(self):
 

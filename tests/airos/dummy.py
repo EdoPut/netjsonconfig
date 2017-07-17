@@ -1,6 +1,6 @@
-from netjsonconfig import AirOS
+from netjsonconfig import AirOs
 
-from netjsoncongig.backends.airos.converters import Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, \
+from netjsonconfig.backends.airos.converters import Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, \
         Httpd, Igmpproxy, Iptables, Netconf, Netmode, Ntpclient, \
         Pwdog, Radio, Resolv, Route, Snmp, Sshd, Syslog, System, \
         Telnetd, Update, Users, Vlan, Wireless, Wpasupplicant
@@ -33,7 +33,7 @@ class ConverterTest(TestCase):
             self.assertEqual(a, b)
 
 
-class AaaAirOS(AirOS):
+class AaaAirOs(AirOs):
     """
     Mock backend with converter for radius authentication
     """
@@ -42,7 +42,7 @@ class AaaAirOS(AirOS):
     ]
 
 
-class BridgeAirOS(AirOS):
+class BridgeAirOs(AirOs):
     """
     Mock backend with converter for bridge interface
     """
@@ -51,7 +51,7 @@ class BridgeAirOS(AirOS):
     ]
 
 
-class DiscoveryAirOS(AirOS):
+class DiscoveryAirOs(AirOs):
     """
     Mock backend with converter for network hardware discovery
     """
@@ -60,7 +60,7 @@ class DiscoveryAirOS(AirOS):
     ]
 
 
-class DyndnsAirOS(AirOS):
+class DyndnsAirOs(AirOs):
     """
     Mock backend with converter for dynamic dns capabilities
     """
@@ -69,7 +69,7 @@ class DyndnsAirOS(AirOS):
     ]
 
 
-class EbtablesAirOS(AirOS):
+class EbtablesAirOs(AirOs):
     """
     Mock backend with converter for ebtables
     """
@@ -78,7 +78,7 @@ class EbtablesAirOS(AirOS):
     ]
 
 
-class GuiAirOS(AirOS):
+class GuiAirOs(AirOs):
     """
     Mock backend with converter for web interface settings
     """
@@ -87,7 +87,7 @@ class GuiAirOS(AirOS):
     ]
 
 
-class HttpdAirOS(AirOS):
+class HttpdAirOs(AirOs):
     """
     Mock backend with converter for web server
     """
@@ -96,7 +96,7 @@ class HttpdAirOS(AirOS):
     ]
 
 
-class Igmpproxy(AirOS):
+class Igmpproxy(AirOs):
     """
     Mock backend with converter for igmpproxy
     """
@@ -105,7 +105,7 @@ class Igmpproxy(AirOS):
     ]
 
 
-class IptablesAirOS(AirOS):
+class IptablesAirOs(AirOs):
     """
     Mock backend with converter for iptables
     """
@@ -114,7 +114,7 @@ class IptablesAirOS(AirOS):
     ]
 
 
-class NetconfAirOS(AirOS):
+class NetconfAirOs(AirOs):
     """
     Mock backend with converter for network configuration
     """
@@ -123,7 +123,7 @@ class NetconfAirOS(AirOS):
     ]
 
 
-class NetmodeAirOS(AirOS):
+class NetmodeAirOs(AirOs):
     """
     Mock backend with converter for network mode
     """
@@ -132,7 +132,7 @@ class NetmodeAirOS(AirOS):
     ]
 
 
-class NtpclientAirOS(AirOS):
+class NtpclientAirOs(AirOs):
     """
     Mock backend with converter for ntp settings
     """
@@ -141,7 +141,7 @@ class NtpclientAirOS(AirOS):
     ]
 
 
-class PwdogAirOS(AirOS):
+class PwdogAirOs(AirOs):
     """
     Mock backend with converter for ping watchdog settings
     """
@@ -150,7 +150,7 @@ class PwdogAirOS(AirOS):
     ]
 
 
-class RadioAirOS(AirOS):
+class RadioAirOs(AirOs):
     """
     Mock backend with converter for radio settings
     """
@@ -159,7 +159,7 @@ class RadioAirOS(AirOS):
     ]
 
 
-class ResolvAirOS(AirOS):
+class ResolvAirOs(AirOs):
     """
     Mock backend with converter for network resolver
     """
@@ -168,7 +168,7 @@ class ResolvAirOS(AirOS):
     ]
 
 
-class RouteAirOS(AirOS):
+class RouteAirOs(AirOs):
     """
     Mock backend with converter for static routes
     """
@@ -177,7 +177,7 @@ class RouteAirOS(AirOS):
     ]
 
 
-class SnmpAirOS(AirOS):
+class SnmpAirOs(AirOs):
     """
     Mock backend with converter for simple network management protocol
     """
@@ -187,7 +187,7 @@ class SnmpAirOS(AirOS):
 
 
 
-class SshdAirOS(AirOS):
+class SshdAirOs(AirOs):
     """
     Mock backend with converter for ssh daemon settings
     """
@@ -196,7 +196,7 @@ class SshdAirOS(AirOS):
     ]
 
 
-class SyslogAirOS(AirOS):
+class SyslogAirOs(AirOs):
     """
     Mock backend with converter for remote logging
     """
@@ -205,7 +205,7 @@ class SyslogAirOS(AirOS):
     ]
 
 
-class SystemAirOS(AirOS):
+class SystemAirOs(AirOs):
     """
     Mock backend with converter for system settings
     """
@@ -214,7 +214,7 @@ class SystemAirOS(AirOS):
     ]
 
 
-class TelnetdAirOS(AirOS):
+class TelnetdAirOs(AirOs):
     """
     Mock backend with converter for telnet daemon settings
     """
@@ -223,7 +223,7 @@ class TelnetdAirOS(AirOS):
     ]
 
 
-class UpdateAirOS(AirOS):
+class UpdateAirOs(AirOs):
     """
     Mock backend with converter for update
     """
@@ -232,7 +232,7 @@ class UpdateAirOS(AirOS):
     ]
 
 
-class UsersAirOS(AirOS):
+class UsersAirOs(AirOs):
     """
     Mock backend with converter for users settings
     """
@@ -241,7 +241,7 @@ class UsersAirOS(AirOS):
     ]
 
 
-class VlanAirOS(AirOS):
+class VlanAirOs(AirOs):
     """
     Mock backend with converter for vlan settings
     """
@@ -250,7 +250,7 @@ class VlanAirOS(AirOS):
     ]
 
 
-class WirelessAirOS(AirOS):
+class WirelessAirOs(AirOs):
     """
     Mock backend with converter for wireless settings
     """
@@ -259,7 +259,7 @@ class WirelessAirOS(AirOS):
     ]
 
 
-class WpasupplicantAirOS(AirOS):
+class WpasupplicantAirOs(AirOs):
     """
     Mock backend with converter for wpasupplicant settings
     """

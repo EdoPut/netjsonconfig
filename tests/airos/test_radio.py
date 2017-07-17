@@ -1,9 +1,9 @@
-from .dummy import RadioAirOS, ConverterTest
+from .dummy import RadioAirOs, ConverterTest
 
 
 class TestRadioConverter(ConverterTest):
 
-    backend = RadioAirOS
+    backend = RadioAirOs
 
     def test_no_radio(self):
         o = self.backend({

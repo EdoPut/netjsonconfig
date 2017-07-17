@@ -1,9 +1,9 @@
-from .dummy import WirelessAirOS, ConverterTest
+from .dummy import WirelessAirOs, ConverterTest
 
 
 class TestWirelessConverter(ConverterTest):
 
-    backend = WirelessAirOS
+    backend = WirelessAirOs
 
     def test_active_wireless(self):
 
