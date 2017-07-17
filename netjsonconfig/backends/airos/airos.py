@@ -60,14 +60,14 @@ class AirOs(BaseBackend):
             self.intermediate_data[k] = [x for x in flatten(intermediate_to_list(v)) if x != {}]
 
 
-def flatten(xs):
+def flatten(elements):
     """
     Flatten a list
     """
-    if xs is not list:
-        return xs
+    if elements is not list:
+        return elements
     else:
-        return reduce(lambda x, y: x + flatten(y), xs, [])
+        return reduce(lambda x, y: x + flatten(y), elements, [])
 
 
 def intermediate_to_list(configuration):
