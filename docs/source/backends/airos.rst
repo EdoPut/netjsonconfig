@@ -180,4 +180,4 @@ And another that set the authentication protocol to WPA2 enterprise, but this is
         ]
     }
 
-Leaving the `NetJSON Encryption object <http://netjson.org/rfc.html#rfc.section.5.4.2.1>` empty defaults to no encryption at all
+Leaving the `NetJSON Encryption object <http://netjson.org/rfc.html#rfc.section.5.4.2.1>` empty defaults to no encryption at all.
