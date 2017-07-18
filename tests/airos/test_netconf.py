@@ -1,5 +1,6 @@
 from unittest import skip
-from .mock import NetconfAirOs, ConverterTest
+
+from .mock import ConverterTest, NetconfAirOs
 
 
 class TestNetconfConverter(ConverterTest):

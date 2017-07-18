@@ -1,11 +1,13 @@
 from six import string_types
+from six.moves import reduce
 
-from .converters import Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, \
-        Httpd, Igmpproxy, Iptables, Netconf, Netmode, Ntpclient, \
-        Pwdog, Radio, Resolv, Route, Snmp, Sshd, Syslog, System, \
-        Telnetd, Update, Users, Vlan, Wireless, Wpasupplicant
-from .renderers import AirOS as AirOsRenderer
 from ..base.backend import BaseBackend
+from .converters import (Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, Httpd,
+                         Igmpproxy, Iptables, Netconf, Netmode, Ntpclient,
+                         Pwdog, Radio, Resolv, Route, Snmp, Sshd, Syslog,
+                         System, Telnetd, Update, Users, Vlan, Wireless,
+                         Wpasupplicant)
+from .renderers import AirOS as AirOsRenderer
 from .schema import schema
 
 

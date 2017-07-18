@@ -1,4 +1,4 @@
-from .mock import NetmodeAirOs, ConverterTest
+from .mock import ConverterTest, NetmodeAirOs
 
 
 class TestNetmodeConverter(ConverterTest):

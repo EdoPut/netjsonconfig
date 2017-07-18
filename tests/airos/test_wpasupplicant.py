@@ -2,7 +2,7 @@ from unittest import skip
 
 from netjsonconfig.exceptions import ValidationError
 
-from .mock import WpasupplicantAirOs, ConverterTest
+from .mock import ConverterTest, WpasupplicantAirOs
 
 
 class TestWpasupplicantStation(ConverterTest):
@@ -13,7 +13,6 @@ class TestWpasupplicantStation(ConverterTest):
     backend = WpasupplicantAirOs
 
     def test_invalid_encryption(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -38,7 +37,6 @@ class TestWpasupplicantStation(ConverterTest):
             o.validate()
 
     def test_no_encryption(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -54,9 +52,6 @@ class TestWpasupplicantStation(ConverterTest):
                         "ssid": "ap-ssid-example",
                         "bssid": "00:11:22:33:44:55",
                     },
-#                    "encryption": {
-#                        "protocol": "none",
-#                    },
                 }
             ]
         })
@@ -77,11 +72,9 @@ class TestWpasupplicantStation(ConverterTest):
                 'status': 'enabled',
             }
         ]
-
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)
 
     def test_wpa2_personal(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -128,12 +121,10 @@ class TestWpasupplicantStation(ConverterTest):
                 'status': 'enabled',
             },
         ]
-
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)
 
     @skip("target wpa2_enterprise later")
     def test_wpa2_enterprise(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -183,7 +174,6 @@ class TestWpasupplicantStation(ConverterTest):
                 'profile.1.network.2.status': 'disabled',
             },
         ]
-
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)
 
 
@@ -192,11 +182,9 @@ class TestWpasupplicantAccess(ConverterTest):
     Test the wpasupplicant converter for a
     device in ``access_point`` mode
     """
-
     backend = WpasupplicantAirOs
 
     def test_no_encryption(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -211,9 +199,6 @@ class TestWpasupplicantAccess(ConverterTest):
                         "mode": "access_point",
                         "ssid": "ap-ssid-example",
                     },
-#                    "encryption": {
-#                        "protocol": "none",
-#                    },
                 },
             ]
         })
@@ -234,7 +219,6 @@ class TestWpasupplicantAccess(ConverterTest):
                 'profile.1.network.2.status': 'disabled',
             },
         ]
-
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)
 
     def test_wpa2_personal(self):
@@ -276,7 +260,6 @@ class TestWpasupplicantAccess(ConverterTest):
                 'profile.1.network.2.key_mgmt.1.name': 'NONE',
                 'profile.1.network.2.priority': 2,
                 'profile.1.network.2.status': 'disabled',
-            },
+            }
         ]
-
         self.assertEqualConfig(o.intermediate_data['wpasupplicant'], expected)

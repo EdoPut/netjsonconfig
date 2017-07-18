@@ -1,4 +1,4 @@
-from .mock import VlanAirOs, ConverterTest
+from .mock import ConverterTest, VlanAirOs
 
 
 class TestVlanConverter(ConverterTest):
@@ -8,7 +8,6 @@ class TestVlanConverter(ConverterTest):
     backend = VlanAirOs
 
     def test_active_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -20,7 +19,7 @@ class TestVlanConverter(ConverterTest):
         })
         o.to_intermediate()
         expected = [
-        {
+            {
                 '1.comment': '',
                 '1.devname': 'eth0',
                 '1.id': '1',
@@ -30,11 +29,9 @@ class TestVlanConverter(ConverterTest):
                 'status': 'enabled',
             }
         ]
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
     def test_disabled_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -56,11 +53,9 @@ class TestVlanConverter(ConverterTest):
             }
         ]
         o.to_intermediate()
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
     def test_many_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -93,11 +88,9 @@ class TestVlanConverter(ConverterTest):
             }
         ]
         o.to_intermediate()
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
     def test_mixed_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -130,11 +123,9 @@ class TestVlanConverter(ConverterTest):
             }
         ]
         o.to_intermediate()
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
     def test_no_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -150,11 +141,9 @@ class TestVlanConverter(ConverterTest):
             },
         ]
         o.to_intermediate()
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
     def test_one_vlan(self):
-
         o = self.backend({
             "interfaces": [
                 {
@@ -182,5 +171,4 @@ class TestVlanConverter(ConverterTest):
             },
         ]
         o.to_intermediate()
-
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)

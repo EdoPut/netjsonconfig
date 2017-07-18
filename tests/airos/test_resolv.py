@@ -1,4 +1,4 @@
-from .mock import ResolvAirOs, ConverterTest
+from .mock import ConverterTest, ResolvAirOs
 
 
 class TestResolvConverter(ConverterTest):

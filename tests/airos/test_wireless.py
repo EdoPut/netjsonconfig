@@ -1,4 +1,4 @@
-from .mock import WirelessAirOs, ConverterTest
+from .mock import ConverterTest, WirelessAirOs
 
 
 class TestWirelessConverter(ConverterTest):

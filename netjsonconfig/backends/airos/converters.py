@@ -1,9 +1,8 @@
 from copy import deepcopy
-from ...utils import get_copy
-from ..base.converter import BaseConverter
-
 from ipaddress import ip_interface
 
+from ...utils import get_copy
+from ..base.converter import BaseConverter
 from .wpasupplicant import available_mode_authentication
 
 
@@ -55,9 +54,8 @@ class Aaa(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
-                'status': 'disabled',
+            'status': 'disabled',
         })
         result.append([
             {
@@ -77,11 +75,9 @@ class Aaa(AirOsConverter):
                 'status': 'disabled',
             }
         ])
-
         w = self.wpa2_personal()
         if w:
             result.append([w])
-
         return (('aaa', result),)
 
 
@@ -90,35 +86,31 @@ class Bridge(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         original = [
-                i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'bridge'
-                ]
-
+            i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'bridge'
+        ]
         bridges = []
         for interface in original:
             bridge_ports = []
             for port in interface.get('bridge_members', []):
                 bridge_ports.append({
-                    'devname':  port,
-                    'status':  'enabled',
+                    'devname': port,
+                    'status': 'enabled',
                 })
-
             bridges.append({
-                'comment':  interface.get('comment', ''),
-                'devname':  interface['name'],
-                'port':  bridge_ports,
-                'status':  status(interface),
+                'comment': interface.get('comment', ''),
+                'devname': interface['name'],
+                'port': bridge_ports,
+                'status': status(interface),
                 'stp': {
-                    'status':  'enabled',
+                    'status': 'enabled',
                 }
             })
 
         result.append(bridges)
         result.append({
-            'status':  'enabled',
+            'status': 'enabled',
         })
-
         return (('bridge', result),)
 
 
@@ -127,12 +119,12 @@ class Discovery(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                   'cdp': {
-                       'status': 'enabled',
-                    },
-                   'status': 'enabled',
+            {
+                'cdp': {
+                    'status': 'enabled',
                 },
+                'status': 'enabled',
+            },
         ]
         return (('discovery', result),)
 
@@ -141,11 +133,7 @@ class Dyndns(AirOsConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
-        result = [
-            {
-                'status': 'disabled',
-            },
-        ]
+        result = [{'status': 'disabled'}]
         return (('dyndns', result),)
 
 
@@ -157,14 +145,13 @@ class Ebtables(AirOsConverter):
             {
                 'sys': {
                     'fw': {
-                        'status':  'disabled',
+                        'status': 'disabled',
                     },
-                    'status': 'enabled',
+                    'status': 'enabled'
                 },
-                'status': 'enabled',
-            },
+                'status': 'enabled'
+            }
         ]
-
         return (('ebtables', result),)
 
 
@@ -174,12 +161,12 @@ class Gui(AirOsConverter):
     def to_intermediate(self):
         result = [
             {
-                'language':  'en_US',
+                'language': 'en_US',
             },
             {
                 'network': {
                     'advanced': {
-                        'status':  'enabled',
+                        'status': 'enabled'
                     }
                 }
             }
@@ -194,19 +181,16 @@ class Httpd(AirOsConverter):
         result = [
             {
                 'https': {
-                    'port':  443,
-                    'status':  'enabled',
+                    'port': 443,
+                    'status': 'enabled',
                 },
             },
             {
-                 'port':  80,
-                 'session': {
-                     'timeout':  900,
-                 },
-                 'status':  'enabled',
-             },
+                'port': 80,
+                'session': {'timeout': 900},
+                'status': 'enabled',
+            }
         ]
-
         return (('httpd', result),)
 
 
@@ -214,12 +198,7 @@ class Igmpproxy(AirOsConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
-        result = [
-           {
-                'status':  'disabled',
-            },
-        ]
-
+        result = [{'status': 'disabled'}]
         return (('igmpproxy', result),)
 
 
@@ -228,17 +207,14 @@ class Iptables(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-           {
-               'sys': {
-                   'portfw':  {
-                       'status': 'disabled',
-                   },
-                   'status':  'enabled',
-               },
-               'status':  'disabled',
-           },
+            {
+                'sys': {
+                    'portfw': {'status': 'disabled'},
+                    'status': 'enabled',
+                },
+                'status': 'disabled'
+            }
         ]
-
         return (('iptables', result),)
 
 
@@ -264,7 +240,6 @@ class Netconf(AirOsConverter):
                 'up':  status(interface),
                 'mtu': interface.get('mtu', 1500),
             }
-
             # handle interface type quirks
             if interface['type'] == 'ethernet' and '.' not in interface['name']:
                 base['autoneg'] = 'enabled'
@@ -281,16 +256,13 @@ class Netconf(AirOsConverter):
                 base['devname'] = interface['wireless']['radio']
 
             addresses = interface.get('addresses')
-
             if addresses:
                 # for every address policy put a
                 # configuration
                 for addr in addresses:
                     temp = deepcopy(base)
-
                     if addr.get('management'):
                         temp['role'] = self.type_to_role(interface['type'])
-
                     # handle explicit address policy
                     if addr['proto'] == 'dhcp':
                         temp['autoip'] = {}
@@ -300,18 +272,14 @@ class Netconf(AirOsConverter):
                         network = ip_interface(ip_and_mask)
                         temp['ip'] = str(network.ip)
                         temp['netmask'] = str(network.netmask)
-
                     interfaces.append(temp)
             else:
                 # an interface without address
                 # is still valid with these defaults values
-                base['autoip'] = {
-                    'status': 'disabled',
-                }
+                base['autoip'] = {'status': 'disabled'}
                 interfaces.append(base)
-
         result.append(interfaces)
-        result.append({'status':  'enabled'})
+        result.append({'status': 'enabled'})
         return (('netconf', result),)
 
 
@@ -320,7 +288,6 @@ class Netmode(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
             'status': self.netjson.get('netmode', 'bridge'),
         })
@@ -333,25 +300,17 @@ class Ntpclient(AirOsConverter):
     def to_intermediate(self):
         result = []
         temp = []
-
         original = get_copy(self.netjson, self.netjson_key, [])
-
         if original:
             for ntp in original:
                 temp.append({
                     'server': ntp,
                     'status': 'enabled',
                 })
-
             result.append(temp)
-            result.append({
-                'status': 'enabled',
-            })
+            result.append({'status': 'enabled'})
         else:
-            result.append({
-                'status': 'disabled',
-            })
-
+            result.append({'status': 'disabled'})
         return (('ntpclient', result),)
 
 
@@ -360,7 +319,6 @@ class Pwdog(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
             'delay': 300,
             'period': 300,
@@ -375,11 +333,8 @@ class Radio(BaseConverter):
 
     def to_intermediate(self):
         result = []
-
         original = get_copy(self.netjson, self.netjson_key, [])
-
         radios = []
-
         for r in original:
             radios.append({
                 'devname': r['name'],
@@ -387,11 +342,8 @@ class Radio(BaseConverter):
                 'txpower': r.get('tx_power', ''),
                 'chanbw': r.get('channel_width', ''),
             })
-
         result.append(radios)
-
         result.append({'status': 'enabled'})
-
         return (('radio', result),)
 
 
@@ -410,22 +362,18 @@ class Resolv(AirOsConverter):
     def nameserver(self):
         result = []
         original = get_copy(self.netjson, self.netjson_key, [])
-
         for nameserver in original:
             result.append({
-                'ip':  nameserver,
-                'status':  'enabled',
+                'ip': nameserver,
+                'status': 'enabled',
             })
-
         return {'nameserver': result}
 
     def to_intermediate(self):
         result = []
-
         result.append(self.host())
         result.append(self.nameserver())
-        result.append({'status':  'enabled'})
-
+        result.append({'status': 'enabled'})
         return (('resolv', result),)
 
 
@@ -435,9 +383,7 @@ class Route(AirOsConverter):
     def to_intermediate(self):
         result = []
         original = get_copy(self.netjson, self.netjson_key, [])
-
         routes = []
-
         for r in original:
             network = ip_interface(r['destination'])
             temp = {}
@@ -449,7 +395,6 @@ class Route(AirOsConverter):
                 'netmask': temp['netmask'],
                 'status': 'enabled',
             })
-
         result.append(routes)
         result.append({'status': 'enabled'})
         return (('route', result),)
@@ -461,13 +406,12 @@ class Snmp(AirOsConverter):
     def to_intermediate(self):
         result = [
             {
-                'community':  'public',
-                'contact':  '',
-                'location':  '',
-                'status':  'enabled',
+                'community': 'public',
+                'contact': '',
+                'location': '',
+                'status': 'enabled',
             },
         ]
-
         return (('snmp', result),)
 
 
@@ -476,7 +420,6 @@ class Sshd(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
             'auth': {'passwd': 'enabled'},
             'port': 22,
@@ -506,7 +449,6 @@ class System(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
             'airosx': {
                 'prov': {
@@ -532,7 +474,6 @@ class Telnetd(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
         result.append({
             'port': 23,
             'status': 'disabled',
@@ -544,7 +485,6 @@ class Tshaper(AirOsConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
-
         return (('tshaper', [{'status': 'disabled'}]),)
 
 
@@ -552,7 +492,6 @@ class Unms(AirOsConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
-
         return (('unms', [{'status': 'disabled'}]),)
 
 
@@ -561,12 +500,7 @@ class Update(AirOsConverter):
 
     def to_intermediate(self):
         result = []
-
-        result.append({
-            'check': {
-                'status': 'enabled',
-            },
-        })
+        result.append({'check': {'status': 'enabled'}})
         return (('update', result),)
 
 
@@ -574,11 +508,7 @@ class Users(AirOsConverter):
     netjson_key = 'user'
 
     def key_derivation(self):
-#        from hashlib import pbkdf2_hmac
-#        from binascii import hexlify
-#        from six import b, u
         original = get_copy(self.netjson, self.netjson_key, {})
-#        key_derivation = pbkdf2_hmac('md5', b(original['password']), b(original['salt']), 1)
         return '$1${salt}${derivation}'.format(salt=original['salt'], derivation=original['password'])
 
     def to_intermediate(self):
@@ -592,7 +522,6 @@ class Users(AirOsConverter):
                 'status': 'enabled',
             },
         ])
-
         return (('users', result),)
 
 
@@ -604,19 +533,16 @@ class Vlan(AirOsConverter):
         original = [
             i for i in get_copy(self.netjson, self.netjson_key, []) if '.' in i['name']
         ]
-
         vlans = []
         for v in original:
             vlans.append({
-                'comment':  v.get('comment', ''),
-                'devname':  v['name'].split('.')[0],
-                'id':  v['name'].split('.')[1],
+                'comment': v.get('comment', ''),
+                'devname': v['name'].split('.')[0],
+                'id': v['name'].split('.')[1],
                 'status': status(v),
             })
-
         result.append(vlans)
-        result.append({'status':  'enabled'})
-
+        result.append({'status': 'enabled'})
         return (('vlan', result),)
 
 
@@ -628,12 +554,11 @@ class Wireless(AirOsConverter):
         original = [
             i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
         ]
-
         wireless_list = []
         for w in original:
             wireless_list.append({
-                'addmtikie':  'enabled',
-                'devname':  w['wireless']['radio'],
+                'addmtikie': 'enabled',
+                'devname': w['wireless']['radio'],
                 'hide_ssid': 'enabled' if w['wireless'].get('hidden') else 'disabled',
                 'l2_isolation': 'disabled',
                 'mac_acl': {
@@ -651,14 +576,12 @@ class Wireless(AirOsConverter):
                 'signal_led3': 25,
                 'signal_led4': 15,
                 'signal_led_status': 'enabled',
-                'ssid':  w['wireless']['ssid'],
+                'ssid': w['wireless']['ssid'],
                 'status': status(w),
                 'wds': {'status': 'enabled'},
             })
         result.append(wireless_list)
-
         result.append({'status': 'enabled'})
-
         return (('wireless', result),)
 
 
@@ -689,21 +612,15 @@ class Wpasupplicant(AirOsConverter):
                 del temp_dev['devname']
 
         result.append({
-            'device': [
-                temp_dev,
-            ],
+            'device': [temp_dev],
             'profile': [
                 {
                     'name': 'AUTO',
-                    'network': [
-                        network,
-                        self.secondary_network(),
-                    ],
-                },
-            ],
+                    'network': [network, self.secondary_network()]
+                }
+            ]
         })
         result.append({'status': 'enabled'})
-
         return (('wpasupplicant', result),)
 
     def _access_point_intermediate(self, original):
@@ -723,31 +640,22 @@ class Wpasupplicant(AirOsConverter):
 
         if original:
             head = original[0]
-
             if 'encryption' in head:
                 network = ap_auth_protocols.get(head['encryption']['protocol'])(head)
                 result.append({'status': 'disabled'})
-
             else:
                 network = ap_auth_protocols['none'](head)
                 temp_dev['status'] = 'enabled'
                 result.append({'status': 'enabled'})
-
         result.append({
-            'device': [
-                temp_dev,
-            ],
+            'device': [temp_dev],
             'profile': [
                 {
                     'name': 'AUTO',
-                    'network': [
-                        network,
-                        self.secondary_network(),
-                    ],
+                    'network': [network, self.secondary_network()],
                 },
             ],
         })
-
         return (('wpasupplicant', result),)
 
     def secondary_network(self):
@@ -764,7 +672,6 @@ class Wpasupplicant(AirOsConverter):
         original = [
             i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
         ]
-
         if original:
             head = original[0]
             # call either ``_station_intermediate`` or ``_access_point_intermediate``

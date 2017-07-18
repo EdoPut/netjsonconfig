@@ -4,7 +4,6 @@ AirOS specific JSON-Schema definition
 from ...schema import schema as default_schema
 from ...utils import merge_config
 
-
 """
 This defines a new property in the ``Interface``.
 
