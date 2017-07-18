@@ -563,11 +563,11 @@ class Tshaper(AirOsConverter):
 
     def to_intermediate(self):
 
-        return (('tshaper', [{'status': 'disabled', }]),)
+        return (('tshaper', [{'status': 'disabled'}]),)
 
 
 class Unms(AirOsConverter):
-    netjson_keu = 'general'
+    netjson_key = 'general'
 
     def to_intermediate(self):
 
