@@ -634,9 +634,9 @@ class Wireless(AirOsConverter):
             i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
         ]
 
-        ws = []
+        wireless_list = []
         for w in original:
-            ws.append({
+            wireless_list.append({
                 'addmtikie':  'enabled',
                 'devname':  w['wireless']['radio'],
                 'hide_ssid': 'enabled' if w['wireless'].get('hidden') else 'disabled',
