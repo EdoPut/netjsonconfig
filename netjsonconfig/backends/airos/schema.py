@@ -72,6 +72,22 @@ override_schema = {
                 "default": "bridge",
                 "type": "string",
             },
+            "user": {
+                "additionalProperties": True,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                    },
+                    "salt": {
+                        "type": "string",
+                    },
+                },
+                "required": [
+                    "name",
+                    "password",
+                    "salt",
+                ],
+            },
         },
     }
 
