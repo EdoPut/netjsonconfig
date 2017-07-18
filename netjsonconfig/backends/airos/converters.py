@@ -590,20 +590,26 @@ class Update(AirOSConverter):
 
 
 class Users(AirOSConverter):
-    netjson_key = 'general'
+    netjson_key = 'user'
+    
+    def key_derivation(self):
+        from hashlib import pbkdf2_hmac
+        import binascii
+        original = get_copy(self.netjson, self.netjson_key, {})
+        key_derivation = pbkdf2_hmac('md5', original['password'], original['salt']),
+        return '$1${salt}${derivation}'.format(salt=original['salt'], derivation=binascii.hexify(key_derivation))
 
     def to_intermediate(self):
         result = []
-
+        original = get_copy(self.netjson, self.netjson_key, {})
         result.append({
-            'status': 'disabled',
+            'status': 'enabled',
         })
-
         result.append([
             {
-                'name': 'root',
-                'password': 'changeme',
-                'status': 'disabled',
+                'name': original.get('name'),
+                'password': self.key_derivation(),
+                'status': 'enabled',
             },
         ])
 
