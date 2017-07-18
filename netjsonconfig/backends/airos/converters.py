@@ -137,7 +137,7 @@ class Discovery(AirOsConverter):
         return (('discovery', result),)
 
 
-class Dyndns(AirOSConverter):
+class Dyndns(AirOsConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
