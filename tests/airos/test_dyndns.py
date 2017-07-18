@@ -9,13 +9,11 @@ class TestDyndnsConverter(ConverterTest):
         o = self.backend({
             "general": {}
         })
-
         o.to_intermediate()
-
         expected = [
-                {
-                    'status': 'disabled',
-                },
+            {
+                'status': 'disabled',
+            },
         ]
 
         self.assertEqualConfig(o.intermediate_data['dyndns'], expected)

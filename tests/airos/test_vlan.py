@@ -18,20 +18,18 @@ class TestVlanConverter(ConverterTest):
                 }
             ]
         })
-
         o.to_intermediate()
-
         expected = [
-                    {
-                        '1.comment': '',
-                        '1.devname': 'eth0',
-                        '1.id': '1',
-                        '1.status': 'enabled',
-                    },
-                    {
-                        'status': 'enabled',
-                    }
-                ]
+        {
+                '1.comment': '',
+                '1.devname': 'eth0',
+                '1.id': '1',
+                '1.status': 'enabled',
+            },
+            {
+                'status': 'enabled',
+            }
+        ]
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
 
@@ -46,19 +44,17 @@ class TestVlanConverter(ConverterTest):
                 }
             ]
         })
-
         expected = [
-                    {
-                        '1.comment': '',
-                        '1.devname': 'eth0',
-                        '1.id': '1',
-                        '1.status': 'disabled',
-                    },
-                    {
-                        'status': 'enabled',
-                    }
-                ]
-
+            {
+                '1.comment': '',
+                '1.devname': 'eth0',
+                '1.id': '1',
+                '1.status': 'disabled',
+            },
+            {
+                'status': 'enabled',
+            }
+        ]
         o.to_intermediate()
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
@@ -79,25 +75,23 @@ class TestVlanConverter(ConverterTest):
                 }
             ]
         })
-
         expected = [
-                    {
-                        '1.comment': '',
-                        '1.devname': 'eth0',
-                        '1.id': '1',
-                        '1.status': 'enabled',
-                    },
-                    {
-                        '2.comment': '',
-                        '2.devname': 'eth0',
-                        '2.id': '2',
-                        '2.status': 'enabled',
-                    },
-                    {
-                        'status': 'enabled',
-                    }
-                ]
-
+            {
+                '1.comment': '',
+                '1.devname': 'eth0',
+                '1.id': '1',
+                '1.status': 'enabled',
+            },
+            {
+                '2.comment': '',
+                '2.devname': 'eth0',
+                '2.id': '2',
+                '2.status': 'enabled',
+            },
+            {
+                'status': 'enabled',
+            }
+        ]
         o.to_intermediate()
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
@@ -118,25 +112,23 @@ class TestVlanConverter(ConverterTest):
                 }
             ]
         })
-
         expected = [
-                    {
-                        '1.comment': '',
-                        '1.devname': 'eth0',
-                        '1.id': '1',
-                        '1.status': 'disabled',
-                    },
-                    {
-                        '2.comment': '',
-                        '2.devname': 'eth0',
-                        '2.id': '2',
-                        '2.status': 'enabled',
-                    },
-                    {
-                        'status': 'enabled',
-                    }
-                ]
-
+            {
+                '1.comment': '',
+                '1.devname': 'eth0',
+                '1.id': '1',
+                '1.status': 'disabled',
+            },
+            {
+                '2.comment': '',
+                '2.devname': 'eth0',
+                '2.id': '2',
+                '2.status': 'enabled',
+            },
+            {
+                'status': 'enabled',
+            }
+        ]
         o.to_intermediate()
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
@@ -152,13 +144,11 @@ class TestVlanConverter(ConverterTest):
                 },
             ]
         })
-
         expected = [
-                    {
-                        'status': 'enabled',
-                    },
-                ]
-
+            {
+                'status': 'enabled',
+            },
+        ]
         o.to_intermediate()
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)
@@ -180,19 +170,17 @@ class TestVlanConverter(ConverterTest):
 
             ]
         })
-
         expected = [
-                    {
-                        '1.comment': '',
-                        '1.devname': 'eth0',
-                        '1.id': '1',
-                        '1.status': 'enabled',
-                    },
-                    {
-                        'status': 'enabled',
-                    },
-                ]
-
+            {
+                '1.comment': '',
+                '1.devname': 'eth0',
+                '1.id': '1',
+                '1.status': 'enabled',
+            },
+            {
+                'status': 'enabled',
+            },
+        ]
         o.to_intermediate()
 
         self.assertEqualConfig(o.intermediate_data['vlan'], expected)

@@ -38,7 +38,7 @@ class AaaAirOs(AirOs):
     Mock backend with converter for radius authentication
     """
     converters = [
-            Aaa,
+        Aaa,
     ]
 
 
@@ -47,7 +47,7 @@ class BridgeAirOs(AirOs):
     Mock backend with converter for bridge interface
     """
     converters = [
-            Bridge,
+        Bridge,
     ]
 
 
@@ -56,7 +56,7 @@ class DiscoveryAirOs(AirOs):
     Mock backend with converter for network hardware discovery
     """
     converters = [
-            Discovery,
+        Discovery,
     ]
 
 
@@ -65,7 +65,7 @@ class DyndnsAirOs(AirOs):
     Mock backend with converter for dynamic dns capabilities
     """
     converters = [
-            Dyndns,
+        Dyndns,
     ]
 
 
@@ -74,7 +74,7 @@ class EbtablesAirOs(AirOs):
     Mock backend with converter for ebtables
     """
     converters = [
-            Ebtables,
+        Ebtables,
     ]
 
 
@@ -83,7 +83,7 @@ class GuiAirOs(AirOs):
     Mock backend with converter for web interface settings
     """
     converters = [
-            Gui,
+        Gui,
     ]
 
 
@@ -92,7 +92,7 @@ class HttpdAirOs(AirOs):
     Mock backend with converter for web server
     """
     converters = [
-            Httpd,
+        Httpd,
     ]
 
 
@@ -101,7 +101,7 @@ class Igmpproxy(AirOs):
     Mock backend with converter for igmpproxy
     """
     converters = [
-            Igmpproxy,
+        Igmpproxy,
     ]
 
 
@@ -110,7 +110,7 @@ class IptablesAirOs(AirOs):
     Mock backend with converter for iptables
     """
     converters = [
-            Iptables,
+        Iptables,
     ]
 
 
@@ -119,7 +119,7 @@ class NetconfAirOs(AirOs):
     Mock backend with converter for network configuration
     """
     converters = [
-            Netconf,
+        Netconf,
     ]
 
 
@@ -128,7 +128,7 @@ class NetmodeAirOs(AirOs):
     Mock backend with converter for network mode
     """
     converters = [
-            Netmode,
+        Netmode,
     ]
 
 
@@ -137,7 +137,7 @@ class NtpclientAirOs(AirOs):
     Mock backend with converter for ntp settings
     """
     converters = [
-            Ntpclient,
+        Ntpclient,
     ]
 
 
@@ -146,7 +146,7 @@ class PwdogAirOs(AirOs):
     Mock backend with converter for ping watchdog settings
     """
     converters = [
-            Pwdog,
+        Pwdog,
     ]
 
 
@@ -155,7 +155,7 @@ class RadioAirOs(AirOs):
     Mock backend with converter for radio settings
     """
     converters = [
-            Radio,
+        Radio,
     ]
 
 
@@ -164,7 +164,7 @@ class ResolvAirOs(AirOs):
     Mock backend with converter for network resolver
     """
     converters = [
-            Resolv,
+        Resolv,
     ]
 
 
@@ -173,7 +173,7 @@ class RouteAirOs(AirOs):
     Mock backend with converter for static routes
     """
     converters = [
-            Route,
+        Route,
     ]
 
 
@@ -182,7 +182,7 @@ class SnmpAirOs(AirOs):
     Mock backend with converter for simple network management protocol
     """
     converters = [
-            Snmp,
+        Snmp,
     ]
 
 
@@ -191,7 +191,7 @@ class SshdAirOs(AirOs):
     Mock backend with converter for ssh daemon settings
     """
     converters = [
-            Sshd,
+        Sshd,
     ]
 
 
@@ -200,7 +200,7 @@ class SyslogAirOs(AirOs):
     Mock backend with converter for remote logging
     """
     converters = [
-            Syslog,
+        Syslog,
     ]
 
 
@@ -209,7 +209,7 @@ class SystemAirOs(AirOs):
     Mock backend with converter for system settings
     """
     converters = [
-            System,
+        System,
     ]
 
 
@@ -218,7 +218,7 @@ class TelnetdAirOs(AirOs):
     Mock backend with converter for telnet daemon settings
     """
     converters = [
-            Telnetd,
+        Telnetd,
     ]
 
 
@@ -227,7 +227,7 @@ class UpdateAirOs(AirOs):
     Mock backend with converter for update
     """
     converters = [
-            Update,
+        Update,
     ]
 
 
@@ -236,7 +236,7 @@ class UsersAirOs(AirOs):
     Mock backend with converter for users settings
     """
     converters = [
-            Users,
+        Users,
     ]
 
 
@@ -245,7 +245,7 @@ class VlanAirOs(AirOs):
     Mock backend with converter for vlan settings
     """
     converters = [
-            Vlan,
+        Vlan,
     ]
 
 
@@ -254,7 +254,7 @@ class WirelessAirOs(AirOs):
     Mock backend with converter for wireless settings
     """
     converters = [
-            Wireless,
+        Wireless,
     ]
 
 
@@ -263,5 +263,5 @@ class WpasupplicantAirOs(AirOs):
     Mock backend with converter for wpasupplicant settings
     """
     converters = [
-            Wpasupplicant,
+        Wpasupplicant,
     ]

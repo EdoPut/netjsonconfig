@@ -9,16 +9,14 @@ class TestPwdogConverter(ConverterTest):
         o = self.backend({
             "general": {}
         })
-
         o.to_intermediate()
-
         expected = [
-                {
-                    'delay': 300,
-                    'period': 300,
-                    'retry': 3,
-                    'status': 'enabled',
-                },
+            {
+                'delay': 300,
+                'period': 300,
+                'retry': 3,
+                'status': 'enabled',
+            },
         ]
 
         self.assertEqualConfig(o.intermediate_data['pwdog'], expected)

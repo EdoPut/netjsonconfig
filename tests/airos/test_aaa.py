@@ -10,9 +10,7 @@ class TestResolvConverter(ConverterTest):
             "general": {},
             "interfaces": [],
         })
-
         o.to_intermediate()
-
         expected = [
                 {
                     'status': 'disabled',
