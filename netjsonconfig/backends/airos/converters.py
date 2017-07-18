@@ -607,8 +607,8 @@ class Vlan(AirOsConverter):
     def to_intermediate(self):
         result = []
         original = [
-                i for i in get_copy(self.netjson, self.netjson_key, []) if '.' in i['name']
-                ]
+            i for i in get_copy(self.netjson, self.netjson_key, []) if '.' in i['name']
+        ]
 
         vlans = []
         for v in original:
@@ -631,8 +631,8 @@ class Wireless(AirOsConverter):
     def to_intermediate(self):
         result = []
         original = [
-                i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
-                ]
+            i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
+        ]
 
         ws = []
         for w in original:
@@ -767,14 +767,11 @@ class Wpasupplicant(AirOsConverter):
 
     def to_intermediate(self):
         original = [
-                i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
-                ]
+            i for i in get_copy(self.netjson, self.netjson_key, []) if i['type'] == 'wireless'
+        ]
 
         if original:
             head = original[0]
             # call either ``_station_intermediate`` or ``_access_point_intermediate``
             # and return the result
             return getattr(self, '_%s_intermediate' % head['wireless']['mode'])(original)
-
-
-__all__ = []
