@@ -145,7 +145,7 @@ def intermediate_to_list(configuration):
             temp = {}
             for key, value in element.items():
                 if isinstance(value, string_types) or isinstance(value, int):
-                    pass
+                    temp[key] = value
                 else:
                     # reduce to atom list
                     # as value could be dict or list
