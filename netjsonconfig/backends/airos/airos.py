@@ -13,10 +13,8 @@ class AirOs(BaseBackend):
     """
     AirOS backend
     """
-
     # backend schema validator
     schema = schema
-
     # converters from configuration
     # dictionary to intermediate representation
     converters = [
@@ -45,13 +43,11 @@ class AirOs(BaseBackend):
             Users,
             Vlan,
             Wireless,
-            Wpasupplicant
+            Wpasupplicant,
     ]
-
     # the environment where airos
     # templates lives
     env_path = 'netjsonconfig.backends.airos'
-
     renderer = AirOsRenderer
 
     def to_intermediate(self):
@@ -89,7 +85,7 @@ def intermediate_to_list(configuration):
     ])
     >>>
     [{
-            'spam.eggs' : 'spam and eggs'
+        'spam.eggs' : 'spam and eggs'
     ]}
 
     >>> intermediate_to_list([
@@ -109,15 +105,15 @@ def intermediate_to_list(configuration):
     ])
     >>>
     [
-            {
-                'spam.eggs' : 'spam and eggs'
-            },
-            {
-                '1.henry' : 'the first'
-            },
-            {
-                '2.jacob' : 'the second'
-            }
+        {
+            'spam.eggs' : 'spam and eggs'
+        },
+        {
+            '1.henry' : 'the first'
+        },
+        {
+            '2.jacob' : 'the second'
+        }
     ]
     """
 
