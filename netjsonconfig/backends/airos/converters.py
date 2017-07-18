@@ -147,9 +147,9 @@ class Dyndns(AirOSConverter):
 #                        'servicename': 'dyndns.org',
 #                    },
 #                ],
-                {
-                    'status': 'disabled',
-                },
+            {
+                'status': 'disabled',
+            },
         ]
         return (('dyndns', result),)
 
@@ -159,15 +159,15 @@ class Ebtables(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'sys': {
-                        'fw': {
-                            'status':  'disabled',
-                        },
-                        'status': 'enabled',
+            {
+                'sys': {
+                    'fw': {
+                        'status':  'disabled',
                     },
                     'status': 'enabled',
                 },
+                'status': 'enabled',
+            },
         ]
 
         return (('ebtables', result),)
@@ -178,16 +178,16 @@ class Gui(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'language':  'en_US',
-                },
-               {
-                    'network': {
-                        'advanced': {
-                            'status':  'enabled',
-                        }
+            {
+                'language':  'en_US',
+            },
+            {
+                'network': {
+                    'advanced': {
+                        'status':  'enabled',
                     }
                 }
+            }
         ]
         return (('gui', result),)
 
@@ -197,19 +197,19 @@ class Httpd(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'https': {
-                        'port':  443,
-                        'status':  'enabled',
-                    },
-                },
-               {
-                    'port':  80,
-                    'session': {
-                        'timeout':  900,
-                    },
+            {
+                'https': {
+                    'port':  443,
                     'status':  'enabled',
                 },
+            },
+            {
+                 'port':  80,
+                 'session': {
+                     'timeout':  900,
+                 },
+                 'status':  'enabled',
+             },
         ]
 
         return (('httpd', result),)
@@ -220,9 +220,9 @@ class Igmpproxy(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'status':  'disabled',
-                },
+           {
+                'status':  'disabled',
+            },
         ]
 
         return (('igmpproxy', result),)
@@ -233,15 +233,15 @@ class Iptables(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'sys': {
-                        'portfw':  {
-                            'status': 'disabled',
-                        },
-                        'status':  'enabled',
-                    },
-                    'status':  'disabled',
-                },
+           {
+               'sys': {
+                   'portfw':  {
+                       'status': 'disabled',
+                   },
+                   'status':  'enabled',
+               },
+               'status':  'disabled',
+           },
         ]
 
         return (('iptables', result),)
@@ -274,13 +274,13 @@ class Netconf(AirOsConverter):
             if interface['type'] == 'ethernet' and '.' not in interface['name']:
                 base['autoneg'] = 'enabled'
                 base['flowcontrol'] = {
-                        'rx': {
-                            'status': 'enabled',
-                        },
-                        'tx': {
-                            'status': 'enabled',
-                        },
-                    }
+                    'rx': {
+                        'status': 'enabled',
+                    },
+                    'tx': {
+                        'status': 'enabled',
+                    },
+                }
 
             if interface['type'] == 'wireless':
                 base['devname'] = interface['wireless']['radio']
@@ -311,8 +311,8 @@ class Netconf(AirOsConverter):
                 # an interface without address
                 # is still valid with these defaults values
                 base['autoip'] = {
-                        'status': 'disabled',
-                    }
+                    'status': 'disabled',
+                }
                 interfaces.append(base)
 
         result.append(interfaces)
@@ -476,12 +476,12 @@ class Snmp(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-               {
-                    'community':  'public',
-                    'contact':  '',
-                    'location':  '',
-                    'status':  'enabled',
-                },
+            {
+                'community':  'public',
+                'contact':  '',
+                'location':  '',
+                'status':  'enabled',
+            },
         ]
 
         return (('snmp', result),)
