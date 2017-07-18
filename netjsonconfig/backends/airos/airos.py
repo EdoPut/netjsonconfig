@@ -152,7 +152,7 @@ def intermediate_to_list(configuration):
                     # enclose it in a flattened list
                     for child in intermediate_to_list(flatten([value])):
                         for child_key, child_value in child.items():
-                            nested_key = '{key}.{subkey}'.format(key=child_key, subkey=child_value)
+                            nested_key = '{key}.{subkey}'.format(key=key, subkey=child_key)
                             temp[nested_key] = child_value
 
             # now it is atomic, append it to
