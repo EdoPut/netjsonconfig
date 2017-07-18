@@ -33,7 +33,9 @@ override_schema = {
                     "encryption": {
                         "type": "object",
                         "title": "Encryption",
-                        "required": "protocol",
+                        "required": [
+                            "protocol",
+                        ],
                         "propertyOrder": 20,
                         "oneOf": [
                             {"$ref": "#/definitions/encryption_none"},
@@ -48,7 +50,9 @@ override_schema = {
                     "encryption": {
                         "type": "object",
                         "title": "Encryption",
-                        "required": "protocol",
+                        "required": [
+                            "protocol",
+                        ],
                         "propertyOrder": 20,
                         "oneOf": [
                             {"$ref": "#/definitions/encryption_none"},
