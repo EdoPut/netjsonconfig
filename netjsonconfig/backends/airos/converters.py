@@ -316,9 +316,7 @@ class Netconf(AirOsConverter):
                 interfaces.append(base)
 
         result.append(interfaces)
-        result.append({
-            'status':  'enabled',
-        })
+        result.append({'status':  'enabled'})
         return (('netconf', result),)
 
 
@@ -397,9 +395,7 @@ class Radio(BaseConverter):
 
         result.append(radios)
 
-        result.append({
-            'status': 'enabled',
-        })
+        result.append({'status': 'enabled'})
 
         return (('radio', result),)
 
@@ -410,35 +406,30 @@ class Resolv(AirOsConverter):
     def host(self):
         original = get_copy(self.netjson, 'general', {})
         return {
-            'host':  [{
+            'host': [{
                 'name': original.get('hostname', 'airos'),
                 'status': 'enabled',
             }],
         }
 
     def nameserver(self):
+        result = []
         original = get_copy(self.netjson, self.netjson_key, [])
 
-        t = []
-
         for nameserver in original:
-            t.append({
+            result.append({
                 'ip':  nameserver,
                 'status':  'enabled',
             })
 
-        return {'nameserver': t}
+        return {'nameserver': result}
 
     def to_intermediate(self):
         result = []
 
         result.append(self.host())
-
         result.append(self.nameserver())
-
-        result.append({
-            'status':  'enabled',
-        })
+        result.append({'status':  'enabled'})
 
         return (('resolv', result),)
 
@@ -465,9 +456,7 @@ class Route(AirOsConverter):
             })
 
         result.append(routes)
-        result.append({
-            'status': 'enabled',
-        })
+        result.append({'status': 'enabled'})
         return (('route', result),)
 
 
@@ -494,9 +483,7 @@ class Sshd(AirOsConverter):
         result = []
 
         result.append({
-            'auth': {
-                'passwd': 'enabled',
-            },
+            'auth': {'passwd': 'enabled'},
             'port': 22,
             'status': 'enabled',
         })
@@ -602,9 +589,7 @@ class Users(AirOsConverter):
     def to_intermediate(self):
         result = []
         original = get_copy(self.netjson, self.netjson_key, {})
-        result.append({
-            'status': 'enabled',
-        })
+        result.append({'status': 'enabled'})
         result.append([
             {
                 'name': original.get('name'),
@@ -635,9 +620,7 @@ class Vlan(AirOsConverter):
             })
 
         result.append(vlans)
-        result.append({
-            'status':  'enabled',
-        })
+        result.append({'status':  'enabled'})
 
         return (('vlan', result),)
 
@@ -662,16 +645,12 @@ class Wireless(AirOsConverter):
                     'policy': 'allow',
                     'status': 'disabled',
                 },
-                'mcast': {
-                    'enhance': 0,
-                },
+                'mcast': {'enhance': 0},
                 'rate': {
                     'auto': 'enabled',
                     'mcs': -1,
                 },
-                'security': {
-                    'type': 'none',
-                },
+                'security': {'type': 'none'},
                 'signal_led1': 75,
                 'signal_led2': 50,
                 'signal_led3': 25,
@@ -679,15 +658,11 @@ class Wireless(AirOsConverter):
                 'signal_led_status': 'enabled',
                 'ssid':  w['wireless']['ssid'],
                 'status': status(w),
-                'wds': {
-                    'status': 'enabled',
-                },
+                'wds': {'status': 'enabled'},
             })
-        result.append(ws)
+        result.append(wireless_list)
 
-        result.append({
-            'status':  'enabled',
-        })
+        result.append({'status': 'enabled'})
 
         return (('wireless', result),)
 
@@ -732,9 +707,7 @@ class Wpasupplicant(AirOsConverter):
                 },
             ],
         })
-        result.append({
-            'status': 'enabled',
-        })
+        result.append({'status': 'enabled'})
 
         return (('wpasupplicant', result),)
 
@@ -758,16 +731,12 @@ class Wpasupplicant(AirOsConverter):
 
             if 'encryption' in head:
                 network = ap_auth_protocols.get(head['encryption']['protocol'])(head)
-                result.append({
-                    'status': 'disabled',
-                })
+                result.append({'status': 'disabled'})
 
             else:
                 network = ap_auth_protocols['none'](head)
                 temp_dev['status'] = 'enabled'
-                result.append({
-                    'status': 'enabled',
-                })
+                result.append({'status': 'enabled'})
 
         result.append({
             'device': [
@@ -791,11 +760,7 @@ class Wpasupplicant(AirOsConverter):
         The default secondary network configuration
         """
         return {
-            'key_mgmt': [
-                {
-                    'name': 'NONE',
-                },
-            ],
+            'key_mgmt': [{'name': 'NONE'}],
             'priority': 2,
             'status': 'disabled',
         }
