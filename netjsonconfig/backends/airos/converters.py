@@ -142,11 +142,6 @@ class Dyndns(AirOsConverter):
 
     def to_intermediate(self):
         result = [
-#                [
-#                    {
-#                        'servicename': 'dyndns.org',
-#                    },
-#                ],
             {
                 'status': 'disabled',
             },
