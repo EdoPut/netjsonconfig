@@ -7,7 +7,7 @@ from .converters import (Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, Httpd,
                          Pwdog, Radio, Resolv, Route, Snmp, Sshd, Syslog,
                          System, Telnetd, Update, Users, Vlan, Wireless,
                          Wpasupplicant)
-from .renderers import AirOS as AirOsRenderer
+from .renderers import AirOsRenderer
 from .schema import schema
 
 
