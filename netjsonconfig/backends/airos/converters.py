@@ -367,17 +367,31 @@ class Pwdog(AirOsConverter):
 class Radio(BaseConverter):
     netjson_key = 'radios'
 
+    def wireless(self):
+        return [i for i in get_copy(self.netjson, 'interfaces', []) if i['type'] == 'wireless']
+
+    def radio_mode(interface):
+        if interface['mode'] == 'access_point':
+            return 'master'
+        else:
+            return 'managed'
+
     def to_intermediate(self):
         result = []
-        original = get_copy(self.netjson, self.netjson_key, [])
+        original = {x['name']: x for x in get_copy(self.netjson, self.netjson_key, [])}
         radios = []
-        for r in original:
-            radios.append({
-                'devname': r['name'],
-                'status': status(r),
-                'txpower': r.get('tx_power', ''),
-                'chanbw': r.get('channel_width', ''),
-            })
+        # for every radio device used
+        # in wireless interfaces
+        for interface in self.wireless():
+            if interface['radio'] in original:
+                t = original.get(interface['radio'], {})
+                radios.append({
+                    'devname': t['name'],
+                    'status': status(t),
+                    'txpower': t.get('tx_power', ''),
+                    'chanbw': t.get('channel_width', ''),
+                    'mode': self.radio_mode(interface),
+                })
         result.append(radios)
         result.append({'status': 'enabled'})
         return (('radio', result),)
