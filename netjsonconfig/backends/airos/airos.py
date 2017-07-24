@@ -7,7 +7,7 @@ from .converters import (Aaa, Bridge, Discovery, Dyndns, Ebtables, Gui, Httpd,
                          Wpasupplicant)
 from .intermediate import flatten, intermediate_to_list
 from .renderers import AirOsRenderer
-from .schema import schema
+from ...schema import schema
 
 
 def to_ordered_list(value):
