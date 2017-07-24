@@ -370,8 +370,8 @@ class Radio(BaseConverter):
     def wireless(self):
         return [i for i in get_copy(self.netjson, 'interfaces', []) if i['type'] == 'wireless']
 
-    def radio_mode(interface):
-        if interface['mode'] == 'access_point':
+    def radio_mode(self, interface):
+        if interface['wireless']['mode'] == 'access_point':
             return 'master'
         else:
             return 'managed'
@@ -383,8 +383,8 @@ class Radio(BaseConverter):
         # for every radio device used
         # in wireless interfaces
         for interface in self.wireless():
-            if interface['radio'] in original:
-                t = original.get(interface['radio'], {})
+            if interface['wireless']['radio'] in original:
+                t = original.get(interface['wireless']['radio'], {})
                 radios.append({
                     'devname': t['name'],
                     'status': status(t),
