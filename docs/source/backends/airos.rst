@@ -136,7 +136,6 @@ By setting the key ``ntp_servers`` in your input you can provide a list of ntp s
 
     {
         "type": "DeviceConfiguration",
-        ...
         "ntp_servers": [
             "0.ubnt.pool.ntp.org"
         ]
