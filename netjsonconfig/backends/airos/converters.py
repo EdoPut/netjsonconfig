@@ -456,11 +456,12 @@ class Snmp(BaseConverter):
     netjson_key = 'general'
 
     def to_intermediate(self):
+        original = get_copy(self.netson, self.netjson_key)
         result = [
                {
                     'community':  'public',
-                    'contact':  '',
-                    'location':  '',
+                    'contact':  original.get('mantainer', ''),
+                    'location':  original.get('location', ''),
                     'status':  'enabled',
                 },
         ]
