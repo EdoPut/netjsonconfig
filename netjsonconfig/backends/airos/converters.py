@@ -65,13 +65,13 @@ class Aaa(AirOsConverter):
             base.update(status_from_interface(wireless))
             base.update(radius_from_interface(wireless))
         except IndexError:
-            raise Exception('input is missing a wireless or bridge interface')
+            raise Warning('Zero wireless interface found')
 
         try:
             bridge = self.bridge[0]
             base.update(bridge_devname(wireless, bridge))
         except IndexError:
-            pass
+            raise Warning('Zero bridge interface found')
 
         result.append(status_from_interface(wireless))
         result.append([base])
