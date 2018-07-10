@@ -66,6 +66,13 @@ setup(
     download_url='https://github.com/openwisp/netjsonconfig/releases',
     keywords=['openwrt', 'openwisp', 'netjson', 'networking'],
     packages=find_packages(exclude=['tests', 'tests.*', 'docs', 'docs.*']),
+    entry_points={
+        'netjsonconfig.backends': [
+            'openvpn=netjsonconfig.openvpn.openvpn:OpenVpn',
+            'openwisp=netjsonconfig.openwrt.openwrt:OpenWisp',
+            'openwrt=netjsonconfig.openwrt.openwrt:OpenWrt',
+        ]
+    },
     include_package_data=True,
     zip_safe=False,
     classifiers=[

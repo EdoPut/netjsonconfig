@@ -9,11 +9,7 @@ from .backends.openvpn.openvpn import OpenVpn  # noqa
 
 
 def get_backends():
-    default = {
-        'openwrt': OpenWrt,
-        'openwisp': OpenWisp,
-        'openvpn': OpenVpn,
-    }
+    default = {}
     logger = logging.getLogger(__name__)
 
     for entry_point in iter_entry_points('netjsonconfig.backends'):
